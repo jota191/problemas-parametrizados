@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Evaluaciones Parametrizadas</title>
+	</head>
+	<body>
+		<form method="Post" action="{% url 'evaluaciones' %}">
+			{% csrf_token %}
+			<nav>
+				<ul>
+					<li><input type="text" id="titulo" placeholder="Titulo" name="titulo" autofocus></li>
+
+					<li>
+						Exportar a:
+						<input type="radio" name="exportacion" value="txt" id="txt"><label for="txt">Texto</label>
+						<input type="radio" name="exportacion" value="pdf" id="pdf"><label for="pdf">PDF</label>
+						<input type="radio" name="exportacion" value="eva" id="eva"><label for="eva">EVA</label>
+					<li>
+						<select name="cantidad">
+						{% for valor in cantidades %}
+							<option value="{{ valor }}">{{ valor }}</option>
+						{% endfor %}
+						</select>
+						evaluacion(es)
+					</li>
+				</ul>
+			</nav>
+			<ul div>
+			{% for ejercicio in ejercicios %}
+				<li class="ejercicio">
+					
+					<label for="{{ ejercicio.nombre }}">
+						<h1><input type="checkbox" name="ejercicios" id="{{ ejercicio.nombre }}" value="{{ ejercicio.nombre }}" onclick="seleccion(this.checked);">{{ ejercicio.get_titulo }} </h1>
+						<p>{{ ejercicio.problema }}</p>
+						<p>solución: {{ ejercicio.respuesta }}</p>
+						distractores: {{ ejercicio.numero_distractores }}
+						parametros: {{ ejercicio.numero_parametros }}
+						computos: {{ ejercicio.numero_computos }}<br>
+						<a target="_blank" href={% url 'evaluaciones' %}?preview={{ ejercicio.nombre }}>Vista previa</a>
+						<a target="_blank" href={% url 'evaluaciones' %}?descargar={{ ejercicio.nombre }}>Descargar</a>
+					</label>
+				</li>
+			{% endfor %}
+			</ul>
+			<footer>
+				<span id="seleccionados">0</span> <span id="leyenda_seleccionados">ejercicios seleccionados</span>
+				<input type="submit" value="Generar Evaluaciones" class="btn btn-lg btn-primary generar">
+			</footer>
+			<script>
+				var seleccionados = 0;
+				var numero_seleccionado = document.getElementById('seleccionados')
+				var leyenda_seleccionados = document.getElementById('leyenda_seleccionados')
+				function seleccion(seleccionado) {
+					if (seleccionado){
+						seleccionados += 1
+					} else {
+						seleccionados -= 1
+					};
+					if(seleccionados == 1) {
+						leyenda_seleccionados.innerHTML = 'ejercicio seleccionado'
+					} else {
+						leyenda_seleccionados.innerHTML = 'ejercicios seleccionados'
+					}
+					numero_seleccionado.innerHTML = seleccionados;
+
+				}
+			</script>
+
+			<style>
+				body{
+					margin: 0px;
+					padding-bottom: 60px;
+				}
+
+				#titulo {
+					background-color: #ecf0f1;
+					border: none;
+					font-size: 20pt;
+					outline: none;
+				}
+
+				ul {
+					list-style-type: none;
+					margin: 0px;
+					padding: 0px;
+				}
+				li {
+					margin: 0px;
+				}
+				nav {
+					/*position: fixed;*/
+					background-color: #ecf0f1;
+					top:0px;
+					width:100%;
+					padding: 10pt 10pt;
+				}
+				nav ul{
+					list-style-type: none;
+				}
+
+				.ejercicio{
+					border-bottom: 2px solid #ecf0f1;
+					padding: 5pt 10pt;
+					font-size: 10pt;
+					font-weight: lighter;
+				}
+
+				.ejercicio h1{
+					font-size: 20pt;
+					padding-left: 10pt;
+
+				}
+
+				#seleccionados {
+					position: relative;
+					top: 18pt;
+					left: 20pt;
+				}
+
+				#leyenda_seleccionados {
+					position: relative;
+					top: 18pt;
+					left: 20pt;
+				}
+
+				.ejercicio input{
+					position: relative;
+					top: -2pt;
+					right: 5pt;
+				}
+
+				footer{
+					position: fixed;
+					bottom: 0px;
+					background-color: #ecf0f1;	
+					width:100%;
+					height: 70px;
+				}
+
+
+				footer .generar {
+					float: right;
+					margin: 10pt;
+				}
+			</style>
+
+			<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		</form>
+	</body>
+</html>

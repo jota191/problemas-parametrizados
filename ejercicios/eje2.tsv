@@ -1,0 +1,10 @@
+pregunta	La multiplicacion de los numeros &a y &b es:
+respuesta	&correcto es correcto
+distractor	&incorrecto1 es correcto
+distractor	&incorrecto2 es correcto
+
+parametro	a	maximo	2	minimo	3	decimales	1
+parametro	b	maximo	5	minimo	10	decimales	2
+computar	correcto	a*b	decimales	1
+computar	incorrecto1	a*a
+computar	incorrecto2	b*b	decimales	1

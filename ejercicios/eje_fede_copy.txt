@@ -1,0 +1,34 @@
+titulo: Area trapecio
+Problema:
+Calcular el área de un trapecio de bases &B y &b y altura &h.
+
+Solución: &area cm².
+Distractor: &d1 cm².
+Distractor: &d2 cm².
+
+Parametro: B
+Maximo:25
+Minimo:2
+Decimales:0
+
+Parametro: b
+Maximo:10
+Minimo:1
+Decimales:0
+
+Parametro: h
+Maximo:5
+Minimo:1
+Decimales:0
+
+Computo: area
+Formula: (B+b)*h/2
+Decimales: 0
+
+Computo: d1
+Formula: (B+b)*h
+Decimales: 0
+
+Computo: d2
+Formula: B*h/2
+Decimales: 0

@@ -1,0 +1,23 @@
+Pregunta:
+
+Sea $F$ la función real definida por la fórmula
+
+$F(x)=sen^2( \pi x)+ \int_{1}^{x}{cos(\pi t) dt}$
+
+Calcular $F'(&evaluado_en)$, la derivada de $F$ en $x = &valor_x$
+
+Solución:
+	
+
+Distractor:
+
+Parametro: evaluado_en
+Minimo: 1
+Maximo: 10
+Decimales: 2
+
+Parametro: valor_x
+Minimo: 2
+Maximo: 5
+Decimales: 2
+

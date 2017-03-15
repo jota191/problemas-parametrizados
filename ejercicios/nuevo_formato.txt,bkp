@@ -1,0 +1,26 @@
+titulo:	con Latex
+pregunta: 
+El area de la plancha de contruccion con la formula $x=\frac{1+y}{1+2z^2}$ de largo &largo m y ancho &ancho m.
+Como ayuda se sabe que la altura es muy elevada
+comentario: esto no si esta bien
+
+
+respuesta: &correcto $m^2$
+distractor: &incorrecto1 $m^2$
+distractor: &incorrecto2 $m^2$
+
+parametro: ancho 
+maximo: 2
+minimo: 3
+
+sdka
+
+
+ejemplo:
+
+
+decimales	1
+parametro	largo	maximo	5	minimo	10	decimales	2
+computar	correcto	largo*ancho	decimales	1
+computar	incorrecto1	largo*largo
+computar	incorrecto2	ancho*ancho	decimales	1
